@@ -6,16 +6,21 @@ import img from "/img.png";
 import axios from "axios";
 import logoNegativo from "/LogoNegativo.png";
 import logoSA from "/logoSA.png";
+import { Modal } from "./Modal";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
- 
+  //modal
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     // regex para validar email
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -31,20 +36,29 @@ export const Login = () => {
       setError("Senha inválida");
     }
     if (re.test(email) === true && password.length >= 6) {
-      setError("");
-      const response = await axios.post(
-        "https://api-flordeemprendedora.start-7.com/api/auth/login/,{username:email,password:password}"
-      );
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-
+      try {
+        setError("");
+        const response = await axios.post(
+          "https://api-flordeemprendedora.start-7.com/api/auth/login/",
+          { username: email, password: password }
+        );
+        console.log(response);
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          //show modal success
+          toggle();
+        }
+      } catch (error) {
+        setError("Email ou senha incorretos");
       }
     }
   };
 
   return (
-    <div class='login-container'>
-      <div class='login-area'>
+    <div className='login-container'>
+      {/* modal */}
+      {modal ? <Modal toggle={toggle} /> : null}
+      <div className='login-area'>
         <div className='rectangle-blue mb-2'>&nbsp;</div>
 
         <div className='title-text mb-3'>Bem-vindo de volta!</div>
@@ -80,6 +94,8 @@ export const Login = () => {
             </a>
           </div>
           <div className='d-grid pb-4'>
+            {/* mostrar el error */}
+            {error && <p className='text-center text-danger'>{error}</p>}
             <button
               type='submit'
               onClick={handleSubmit}
@@ -87,8 +103,6 @@ export const Login = () => {
             >
               Entrar
             </button>
-            {/* mostrar el error */}
-            {error && <p className='error'>{error}</p>}
           </div>
           <p className='text-center pb-3 text2'>OU ENTRE COM</p>
           {/*boton de faceboo y google */}
@@ -105,21 +119,20 @@ export const Login = () => {
           </p>
         </form>
       </div>
-
       {/* RECTNAGLE AREAA */}
-      <div class='rectangle-area'>
+      <div className='rectangle-area'>
         <div className='rectangle-top'>
           <img className='logo-negativo' src={logoNegativo} alt='logo' />
           <a href='/' className='negative-link'>
             Ajuda
           </a>
         </div>
-        <div className=' text-end p-5 mx-5 '>
+        <div className=' text-end  mx-auto '>
           <img className='img-default' src={img} alt='img' />
         </div>
         <div className='rectangle-bot'>
-          <span className='span1'>© 2021, Projetolist</span>
-          <span className='span2'>
+          <span className=''>© 2021, Projetolist</span>
+          <span className=''>
             UI/UX Design and Front-end by:{" "}
             <img width='32' height='23' src={logoSA} alt='SA' />
           </span>
