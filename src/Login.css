@@ -1,0 +1,141 @@
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  grid-template-rows: 1fr;
+  grid-auto-flow: row;
+  /* justify-content: center;
+  align-content: center; */
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: "Login-area rectangle-area";
+}
+
+.login-area {
+  grid-area: Login-area;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: auto;
+  color: #5594ef;
+  font-family: "Asap";
+}
+.rectangle-area {
+  grid-area: rectangle-area;
+  background: #6da3f1;
+  height: 100vh;
+  width: 100%;
+  border-radius: 13% 0 0 13%;
+}
+
+/* items rectangle-area */
+.rectangle-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+.logo-negativo {
+  width: 204.18px;
+  height: 72.6px;
+}
+.rectangle-top > a {
+  font-size: 17px;
+  line-height: 19px;
+  color: #ffffff;
+}
+.rectangle-bot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 5%;
+  color: #ffffff;
+}
+.rectangle-bot > spam {
+  font-size: 14px;
+  line-height: 16px;
+}
+.img-default {
+  width: 491px;
+  height: 367px;
+}
+.negtive-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* items login area*/
+.rectangle-blue {
+  width: 32px;
+  height: 4px;
+  background: #5594ef;
+  margin: 0;
+}
+
+.title-text {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 39px;
+}
+.text1 {
+  font-size: 15px;
+  line-height: 26px;
+}
+.text2 {
+  font-size: 13px;
+  line-height: 15px;
+}
+.text3 {
+  font-size: 15px;
+  line-height: 17px;
+}
+
+/* form */
+.form-control {
+  border: 1px solid #cee0fa;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 14px;
+}
+.form-control::placeholder {
+  color: #9ec2f6;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.btn-1 {
+  background: #5594ef;
+  border: 1px solid #5594ef;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-1:hover {
+  background: #6da3f1;
+  color: #fff;
+  border: 1px solid #5594ef;
+}
+
+a {
+  color: #6da3f1;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* text-decoration: none; */
+}
+.img-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.img-btn > img {
+  width: 52px;
+  height: 48px;
+}
